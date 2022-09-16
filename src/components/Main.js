@@ -3,16 +3,37 @@ import image from "../images/Ech.jpg";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function Main() {
+  const [lightMode, setDarkMode] = React.useState(false);
+
+  function toggleLightMode() {
+    setDarkMode((prevState) => !prevState);
+  }
+
+  if (lightMode) {
+    document.body.style.backgroundColor = "white";
+  } else {
+    document.body.style.backgroundColor = "black";
+  }
+
   return (
-    <main>
-      <div class="Header-container">
+    <main className={lightMode ? "light" : ""}>
+      <nav className={lightMode ? "light" : ""}>
+        <div className="toggler">
+          <p className="toggler--light">Dark</p>
+          <div className="toggler--slider" onClick={toggleLightMode}>
+            <div className="toggler--slider--circle"></div>
+          </div>
+          <p className="toggler--light">Light</p>
+        </div>
+      </nav>
+      <div className="Header-container">
         <img src={image} alt="developer" />
       </div>
-      <div class="Main-container">
+      <div className="Main-container">
         <h1>Tom Weniger</h1>
         <h4>Frontend Developer</h4>
         <a href="mailto:tom-weniger@hotmail.com">
-          <FaEnvelope class="Main-icon" /> Email
+          <FaEnvelope className="Main-icon" /> Email
         </a>
         <p>
           <span>
